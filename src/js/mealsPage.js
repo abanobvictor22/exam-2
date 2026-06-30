@@ -988,7 +988,26 @@ export default class MealsPage {
               </div>
             </div>`;
     }
-    productsGrid.innerHTML = htmlValue;
+    if (products.length == 0) {
+      let noProduct = `<div class="flex flex-col items-center justify-center text-center py-12 px-6 max-w-md mx-auto">
+    <div class="w-24 h-24 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-6 animate-pulse">
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+        </svg>
+    </div>
+
+    <h3 class="text-xl font-bold text-gray-900 mb-2">No Products Found</h3>
+    <p class="text-sm text-gray-500 mb-6 leading-relaxed">
+        We couldn't find any food items matching your search. <br>
+        Please check the barcode or try searching for something else!
+    </p>
+
+    
+</div>`;
+      productsGrid.innerHTML = noProduct;
+    } else {
+      productsGrid.innerHTML = htmlValue;
+    }
     const productCard = document.querySelectorAll(".product-card");
     for (let i = 0; i < productCard.length; i++) {
       productCard[i].addEventListener("click", (e) => {
